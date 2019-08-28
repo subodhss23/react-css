@@ -1,33 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
-class LoginControl extends React.Component {
-  constructor(props) {
+class LoginControl extends React.Component{
+  constructor(props){
     super(props);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    this.state = {isLoggedIn: false};
+    this.state = {
+      isLoggedIn : false
+    }
+
+    this.handleLoggedInClick = this.handleLoggedInClick.bind(this);
+    this.handleLoggedOutClick = this.handleLoggedOutClick.bind(this);
   }
 
-  handleLoginClick() {
-    this.setState({isLoggedIn: true});
+  handleLoggedInClick(){
+    this.setState({
+      isLoggedIn : true
+    })
   }
 
-  handleLogoutClick() {
-    this.setState({isLoggedIn: false});
+  handleLoggedOutClick(){
+    this.setState({
+      isLoggedIn: false
+    })
   }
 
-  render() {
+  render(){
     const isLoggedIn = this.state.isLoggedIn;
     let button;
 
-    if (isLoggedIn) {
-      button = <LogoutButton onClick={this.handleLogoutClick} />;
-    } else {
-      button = <LoginButton onClick={this.handleLoginClick} />;
-    }
-
+       if(isLoggedIn){
+       button = <LogoutButton onClick={this.handleLoggedOutClick} />; 
+      } else {
+         button = <LoginButton onClick={this.handleLoggedInClick} />;
+       }
+       
     return (
       <div>
         <Greeting isLoggedIn={isLoggedIn} />
@@ -37,23 +43,23 @@ class LoginControl extends React.Component {
   }
 }
 
-function UserGreeting(props) {
+function UserGreeting(props){
   return <h1>Welcome back!</h1>;
 }
 
-function GuestGreeting(props) {
-  return <h1>Please sign up.</h1>;
+function GuestGreeting(props){
+  return <h1>Please sign up.</h1>
 }
 
-function Greeting(props) {
+function Greeting(props){
   const isLoggedIn = props.isLoggedIn;
-  if (isLoggedIn) {
+  if(isLoggedIn){
     return <UserGreeting />;
   }
-  return <GuestGreeting />;
+  return <GuestGreeting />
 }
 
-function LoginButton(props) {
+function LoginButton(props){
   return (
     <button onClick={props.onClick}>
       Login
@@ -61,15 +67,12 @@ function LoginButton(props) {
   );
 }
 
-function LogoutButton(props) {
+function LogoutButton(props){
   return (
     <button onClick={props.onClick}>
       Logout
     </button>
-  );
+  )
 }
 
-ReactDOM.render(
-  <LoginControl />,
-  document.getElementById('root')
-);
+ReactDOM.render(<LoginControl />,document.getElementById('root'));
