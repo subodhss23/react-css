@@ -1,44 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function WarningBanner(props) {
-  if (!props.warn) {
-    return null;
-  }
 
-  return (
-    <div className="warning">
-      Warning!
-    </div>
-  );
-}
-
-class Page extends React.Component {
-  constructor(props) {
+class App extends React.Component{
+  constructor(props){
     super(props);
-    this.state = {showWarning: true};
-    this.handleToggleClick = this.handleToggleClick.bind(this);
+    this.state = {
+      count : 1
+    }
   }
 
-  handleToggleClick() {
-    this.setState(state => ({
-      showWarning: !state.showWarning
-    }));
-  }
 
-  render() {
+  render(){
     return (
-      <div>
-        <WarningBanner warn={this.state.showWarning} />
-        <button onClick={this.handleToggleClick}>
-          {this.state.showWarning ? 'Hide' : 'Show'}
-        </button>
-      </div>
-    );
+      <div className="app">
+          <h1>is this working?</h1>
+        </div>
+    )
   }
 }
 
-ReactDOM.render(
-  <Page />,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
